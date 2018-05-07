@@ -33,5 +33,4 @@ def login(email, password)
       return false
     end
   end
-  
 end
