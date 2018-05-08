@@ -6,6 +6,10 @@ class TasksController < ApplicationController
      @tasks = Task.all.page(params[:page])
    end
    
+   def show 
+     @task = Task.find(params[:id])
+end
+
    def new
   @task = Task.new
 end
@@ -21,12 +25,11 @@ end
       render :new
     end
   end
-
- def edit
-   set_task
- end
   
-
+  def edit
+    set_task
+  end
+  
   def destroy
     @task.destroy
     flash[:success] = 'メッセージを削除しました。'
@@ -34,6 +37,10 @@ end
   end
   
   private
+  
+  def set_task
+    @task = Task.find(params[:id])
+  end
   
   def task_paramas
     params.require(:task).permit(:content, :status)
